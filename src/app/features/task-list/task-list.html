@@ -25,7 +25,7 @@
             {{ stripHtml(task.description) || 'No description' }}
           </div>
         </td>
-        <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)" /></td>
+        <td><p-tag [value]="task.status" [severity]="ui.getStatusSeverity(task.status)" /></td>
         <td>{{ task.priority }}</td>
         <td>{{ task.dueDate | date: 'mediumDate' }}</td>
         <td>

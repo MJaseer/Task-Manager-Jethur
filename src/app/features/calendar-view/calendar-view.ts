@@ -11,6 +11,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 // PrimeNG & Tailwind Components
 import { CardModule } from 'primeng/card';
+import { UiService } from '../../core/services/ui.service';
 
 @Component({
   selector: 'app-calendar-view',
@@ -22,6 +23,7 @@ import { CardModule } from 'primeng/card';
 export class CalendarView {
   private taskService = inject(TaskService);
   private router = inject(Router);
+  public ui = inject(UiService);
 
   // 1. Map Tasks to Calendar Events using a Computed Signal
   // This automatically updates the calendar if a task is added or edited elsewhere
@@ -32,7 +34,7 @@ export class CalendarView {
       start: task.dueDate,
       allDay: true,
       // Color-code based on priority
-      backgroundColor: this.getEventColor(task.priority),
+      backgroundColor: this.ui.getPriorityColor(task.priority),
       borderColor: 'transparent',
       extendedProps: { status: task.status },
     }));
@@ -56,18 +58,5 @@ export class CalendarView {
     // Navigate to the detail page using the task ID stored in the event
     const taskId = info.event.id;
     this.router.navigate(['/tasks', taskId]);
-  }
-
-  private getEventColor(priority: string): string {
-    switch (priority) {
-      case 'High':
-        return '#ef4444'; // Tailwind red-500
-      case 'Medium':
-        return '#f59e0b'; // Tailwind amber-500
-      case 'Low':
-        return '#10b981'; // Tailwind emerald-500
-      default:
-        return '#6366f1'; // Tailwind indigo-500
-    }
   }
 }

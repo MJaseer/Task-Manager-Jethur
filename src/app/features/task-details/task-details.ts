@@ -7,11 +7,12 @@ import { CommentThread } from './components/comment-thread/comment-thread';
 import { Task } from '../../core/models/task.model';
 import { ButtonModule } from 'primeng/button';
 import { TextareaModule } from 'primeng/textarea';
-
+import { TagModule } from 'primeng/tag';
+import { UiService } from '../../core/services/ui.service';
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [CommonModule, EditorModule, FormsModule, CommentThread, ButtonModule, TextareaModule],
+  imports: [CommonModule, EditorModule, FormsModule, CommentThread, ButtonModule, TextareaModule, TagModule],
   templateUrl: './task-details.html',
   styleUrl: './task-details.css',
 })
@@ -19,6 +20,7 @@ export class TaskDetails {
   id = input.required<string>();
 
   private taskService = inject(TaskService);
+  public ui = inject(UiService);
 
   // Reactive connection to the global store
   task = computed(() => this.taskService.getTaskById(this.id())());

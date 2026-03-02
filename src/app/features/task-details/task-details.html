@@ -1,8 +1,37 @@
 @if (task(); as t) {
 <div class="max-w-4xl mx-auto p-8">
   <header class="mb-8">
-    <h1 class="text-3xl font-black text-surface-900 mb-2">{{ t.title }}</h1>
-    <p class="text-surface-500">Task ID: {{ t.id }}</p>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+      <h1 class="text-3xl font-black text-surface-900">{{ t.title }}</h1>
+      <p class="text-surface-500 font-mono text-sm bg-surface-100 px-2 py-1 rounded">ID: {{ t.id }}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-4 items-center text-sm border-b border-surface-100 pb-6">
+      <div class="flex items-center gap-2">
+        <span class="text-surface-500 font-semibold uppercase text-xs">Status:</span>
+        <p-tag [value]="t.status" [severity]="ui.getStatusSeverity(t.status)" />
+      </div>
+
+      <div class="flex items-center gap-2 border-l border-surface-200 pl-4">
+        <span class="text-surface-500 font-semibold uppercase text-xs">Priority:</span>
+        <span [style.color]="ui.getPriorityColor(t.priority)" class="font-bold">
+          {{ t.priority }}
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2 border-l border-surface-200 pl-4">
+        <span class="text-surface-500 font-semibold uppercase text-xs">Due Date:</span>
+        <span class="text-surface-700 font-medium">
+          <i class="pi pi-calendar mr-1 text-xs"></i>
+          {{ t.dueDate | date: 'mediumDate' }}
+        </span>
+      </div>
+      
+      <div class="flex items-center gap-2 border-l border-surface-200 pl-4">
+        <span class="text-surface-500 font-semibold uppercase text-xs">Assignee:</span>
+        <span class="text-surface-700 font-medium">{{ t.assignee.name }}</span>
+      </div>
+    </div>
   </header>
 
   <section class="mb-10">

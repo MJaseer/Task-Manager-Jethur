@@ -15,6 +15,7 @@ import { TagModule } from 'primeng/tag';
 import { ValidateOutlineDirective } from '../../validator/validate-outline.directive';
 import { Router } from '@angular/router';
 import { EditorModule } from 'primeng/editor';
+import { UiService } from '../../core/services/ui.service';
 
 @Component({
   selector: 'app-task-list',
@@ -38,6 +39,7 @@ export class TaskList {
   private taskService = inject(TaskService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  public ui = inject(UiService);
 
   // State Signals
   tasks = this.taskService.tasks;
