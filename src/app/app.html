@@ -1,0 +1,41 @@
+<div class="flex h-screen bg-surface-50">
+  <aside class="w-64 border-r border-surface-200 bg-white flex flex-col">
+    <div class="p-6">
+      <h2 class="text-xl font-black text-primary-600 flex items-center gap-2">
+        <i class="pi pi-check-square text-2xl"></i> TaskFlow
+      </h2>
+    </div>
+
+    <nav class="flex-1 px-4 space-y-2">
+      <a routerLink="/tasks" 
+         routerLinkActive="bg-primary-50 text-primary-700"
+         class="flex items-center gap-3 p-3 rounded-lg text-surface-600 hover:bg-surface-100 transition-colors">
+        <i class="pi pi-list"></i>
+        <span class="font-medium">Task List</span>
+      </a>
+      
+      <a routerLink="/calendar" 
+         routerLinkActive="bg-primary-50 text-primary-700"
+         class="flex items-center gap-3 p-3 rounded-lg text-surface-600 hover:bg-surface-100 transition-colors">
+        <i class="pi pi-calendar"></i>
+        <span class="font-medium">Calendar</span>
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-surface-200">
+      <div class="flex items-center gap-3 p-2">
+        <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold">
+          JD
+        </div>
+        <div class="text-sm">
+          <p class="font-bold text-surface-900 leading-none">John Dev</p>
+          <p class="text-xs text-surface-500">Pro Account</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flex-1 overflow-y-auto">
+    <router-outlet />
+  </main>
+</div>

@@ -1,0 +1,58 @@
+/* 1. Imports MUST come first */
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+@import "quill/dist/quill.snow.css";
+
+/* 2. Define Layer Order */
+@layer tailwind-base, primeng, tailwind-utilities;
+
+/* 3. Theme Configuration */
+@theme {
+  --color-surface-50: #f8fafc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+}
+
+/* 4. Global Styles */
+@layer base {
+  body {
+    @apply bg-surface-50 text-surface-900;
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* 5. PrimeNG & Plugin Overrides */
+@layer primeng {
+  .ql-toolbar.ql-snow {
+    @apply bg-surface-50 border-surface-200 rounded-t-lg;
+  }
+  .ql-container.ql-snow {
+    @apply border-surface-200 rounded-b-lg font-sans text-base;
+  }
+  .fc-theme-standard td, .fc-theme-standard th {
+    @apply border-surface-200;
+  }
+  
+  .fc-toolbar-title {
+    @apply text-xl font-bold text-surface-900;
+  }
+
+  .fc .fc-button-primary:disabled {
+    @apply bg-surface-300 border-surface-300;
+  }
+}
+
+/* 6. Custom Utilities */
+@layer tailwind-utilities {
+  .pl-10 { 
+    padding-left: 2.5rem; 
+  }
+}

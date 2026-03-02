@@ -1,0 +1,133 @@
+<div class="p-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-surface-900">Project Tasks</h1>
+    <p-button label="New Task" icon="pi pi-plus" (onClick)="showAddTask()" />
+  </div>
+
+  <p-table
+    [value]="tasks()"
+    [rows]="10"
+    [paginator]="true"
+    responsiveLayout="scroll"
+    class="shadow-sm"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+        <th class="w-32">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-task>
+      <tr>
+        <td class="font-mono text-sm">{{ task.id }}</td>
+        <td class="font-medium">{{ task.title }}</td>
+        <td class="text-sm text-surface-600 max-w-[300px]">
+          <div class="truncate" [title]="stripHtml(task.description)">
+            {{ stripHtml(task.description) || 'No description' }}
+          </div>
+        </td>
+        <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)" /></td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.dueDate | date: 'mediumDate' }}</td>
+        <td>
+          <div class="flex gap-2">
+            <p-button
+              icon="pi pi-pencil"
+              [text]="true"
+              severity="secondary"
+              (onClick)="showEditTask(task)"
+            />
+            <p-button
+              icon="pi pi-trash"
+              [text]="true"
+              severity="danger"
+              (onClick)="deleteTask(task.id)"
+            />
+            <p-button
+              icon="pi pi-eye"
+              [text]="true"
+              severity="secondary"
+              (onClick)="viewTaskDetails(task.id)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [header]="isEditMode() ? 'Edit Task' : 'Create Task'"
+    [(visible)]="isDialogVisible"
+    [modal]="true"
+    [style]="{ width: '450px' }"
+    class="p-fluid"
+  >
+    <form [formGroup]="taskForm" (ngSubmit)="saveTask()" class="flex flex-col gap-4 mt-2">
+      <div class="flex flex-col gap-1">
+        <label for="title" class="font-semibold text-sm">Title</label>
+        <input pInputText id="title" formControlName="title" appValidateOutline />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="font-semibold text-sm">Status</label>
+          <p-select [options]="statusOptions()" formControlName="status" appValidateOutline />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-semibold text-sm">Deadline</label>
+          <p-datepicker formControlName="dueDate" [showIcon]="true" appValidateOutline />
+        </div>
+      </div>
+
+      <div formGroupName="assignee" class="p-3 border rounded-lg bg-surface-50">
+        <p class="text-xs font-bold uppercase text-surface-500 mb-2">Assignee Details</p>
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-1">
+            <input
+              pInputText
+              placeholder="Name"
+              formControlName="name"
+              appValidateOutline="assignee.name"
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <input
+              pInputText
+              placeholder="Email"
+              formControlName="email"
+              appValidateOutline="assignee.email"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="font-semibold text-sm">Description</label>
+        <p-editor formControlName="description" [style]="{ height: '150px' }">
+          <ng-template pTemplate="header">
+            <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+            </span>
+          </ng-template>
+        </p-editor>
+      </div>
+
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          [text]="true"
+          (onClick)="isDialogVisible.set(false)"
+        />
+        <p-button label="Save Task" type="submit" [disabled]="taskForm.invalid" />
+      </div>
+    </form>
+  </p-dialog>
+</div>

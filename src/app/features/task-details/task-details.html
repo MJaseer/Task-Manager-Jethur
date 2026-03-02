@@ -1,0 +1,33 @@
+@if (task(); as t) {
+      <div class="max-w-4xl mx-auto p-8">
+        <header class="mb-8">
+          <h1 class="text-3xl font-black text-surface-900 mb-2">{{ t.title }}</h1>
+          <p class="text-surface-500">Task ID: {{ t.id }}</p>
+        </header>
+
+        <section class="mb-10">
+          <h3 class="text-lg font-bold mb-4">Description</h3>
+          <p-editor [(ngModel)]="t.description" [style]="{ height: '250px' }">
+             <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+             </ng-template>
+          </p-editor>
+        </section>
+
+        <section class="border-t border-surface-200 pt-8">
+          <h3 class="text-xl font-bold mb-6 italic">Discussion ({{ t.comments.length }})</h3>
+          
+          @for (c of t.comments; track c.id) {
+            <app-comment-thread [comment]="c" [taskId]="t.id" />
+          } @empty {
+            <div class="text-center p-10 bg-surface-50 rounded-lg text-surface-400">
+              No comments yet. Start the conversation!
+            </div>
+          }
+        </section>
+      </div>
+    }

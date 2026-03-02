@@ -1,0 +1,81 @@
+[
+  {
+    "id": "TASK-101",
+    "title": "Implement Tailwind v4 Refactor",
+    "description": "Migrate the legacy CSS layers to the new v4 PostCSS engine.",
+    "status": "In Progress",
+    "priority": "High",
+    "dueDate": "2026-03-15",
+    "assignee": {
+      "name": "Alex Dev",
+      "email": "alex@example.com"
+    },
+    "comments": [
+      {
+        "id": "C1",
+        "author": "Jordan Tech",
+        "content": "Should we use the new @theme block in CSS?",
+        "createdAt": "2026-03-01T10:00:00Z",
+        "replies": [
+          {
+            "id": "C2",
+            "author": "Alex Dev",
+            "content": "Yes, it simplifies variable management.",
+            "createdAt": "2026-03-01T11:30:00Z",
+            "replies": [
+              {
+                "id": "C3",
+                "author": "Sam Lead",
+                "content": "Make sure it doesn't conflict with PrimeNG's Aura theme layers.",
+                "createdAt": "2026-03-01T12:00:00Z",
+                "replies": [
+                  {
+                    "id": "C4",
+                    "author": "Alex Dev",
+                    "content": "Level 3 depth reached: I will check the layer order in styles.scss.",
+                    "createdAt": "2026-03-01T12:15:00Z",
+                    "replies": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TASK-102",
+    "title": "Configure PrimeNG 19 Dynamic Dialogs",
+    "description": "Set up the DialogService for the task creation modal.",
+    "status": "Todo",
+    "priority": "Medium",
+    "dueDate": "2026-03-20",
+    "assignee": {
+      "name": "Maria Design",
+      "email": "maria@example.com"
+    },
+    "comments": []
+  },
+  {
+    "id": "TASK-103",
+    "title": "Finalize Zoneless Performance Audit",
+    "description": "Verify that Signals are properly triggering updates without Zone.js.",
+    "status": "Done",
+    "priority": "Low",
+    "dueDate": "2026-02-28",
+    "assignee": {
+      "name": "Alex Dev",
+      "email": "alex@example.com"
+    },
+    "comments": [
+      {
+        "id": "C5",
+        "author": "Sam Lead",
+        "content": "Excellent work on the bundle size reduction.",
+        "createdAt": "2026-02-28T16:00:00Z",
+        "replies": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+:host ::ng-deep {
+      .fc {
+        --fc-border-color: var(--p-surface-200);
+        --fc-button-bg-color: var(--p-primary-500);
+        --fc-button-border-color: var(--p-primary-500);
+        --fc-button-hover-bg-color: var(--p-primary-600);
+        font-family: inherit;
+      }
+      .fc-event {
+        @apply cursor-pointer transition-transform hover:scale-105;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+    }
