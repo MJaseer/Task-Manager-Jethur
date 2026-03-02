@@ -97,6 +97,7 @@ The application expects a `Task` model with the following interface structure:
 | `description` | string | HTML content from Editor |
 | `status` | TaskStatus | Todo, In Progress, Done |
 | `dueDate` | string | ISO Date string |
+| `priority` | Priority | Low, Medium, High |
 | `comments` | Comment[] | Recursive array of comment objects |
 
 ## Notes
