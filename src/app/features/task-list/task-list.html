@@ -4,13 +4,7 @@
     <p-button label="New Task" icon="pi pi-plus" (onClick)="showAddTask()" />
   </div>
 
-  <p-table
-    [value]="tasks()"
-    [rows]="10"
-    [paginator]="true"
-    responsiveLayout="scroll"
-    class="shadow-sm"
-  >
+  <p-table [value]="tasks()" [rows]="10" [paginator]="true" responsiveLayout="scroll" class="shadow-sm">
     <ng-template pTemplate="header">
       <tr>
         <th>ID</th>
@@ -36,48 +30,34 @@
         <td>{{ task.dueDate | date: 'mediumDate' }}</td>
         <td>
           <div class="flex gap-2">
-            <p-button
-              icon="pi pi-pencil"
-              [text]="true"
-              severity="secondary"
-              (onClick)="showEditTask(task)"
-            />
-            <p-button
-              icon="pi pi-trash"
-              [text]="true"
-              severity="danger"
-              (onClick)="deleteTask(task.id)"
-            />
-            <p-button
-              icon="pi pi-eye"
-              [text]="true"
-              severity="secondary"
-              (onClick)="viewTaskDetails(task.id)"
-            />
+            <p-button icon="pi pi-pencil" [text]="true" severity="secondary" (onClick)="showEditTask(task)" />
+            <p-button icon="pi pi-trash" [text]="true" severity="danger" (onClick)="deleteTask(task.id)" />
+            <p-button icon="pi pi-eye" [text]="true" severity="secondary" (onClick)="viewTaskDetails(task.id)" />
           </div>
         </td>
       </tr>
     </ng-template>
   </p-table>
 
-  <p-dialog
-    [header]="isEditMode() ? 'Edit Task' : 'Create Task'"
-    [(visible)]="isDialogVisible"
-    [modal]="true"
-    [style]="{ width: '450px' }"
-    class="p-fluid"
-  >
+  <p-dialog [header]="isEditMode() ? 'Edit Task' : 'Create Task'" [(visible)]="isDialogVisible" [modal]="true"
+    [style]="{ width: '450px' }" class="p-fluid">
     <form [formGroup]="taskForm" (ngSubmit)="saveTask()" class="flex flex-col gap-4 mt-2">
       <div class="flex flex-col gap-1">
         <label for="title" class="font-semibold text-sm">Title</label>
         <input pInputText id="title" formControlName="title" appValidateOutline />
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="flex flex-col gap-1">
           <label class="font-semibold text-sm">Status</label>
           <p-select [options]="statusOptions()" formControlName="status" appValidateOutline />
         </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="font-semibold text-sm">Priority</label>
+          <p-select [options]="priorityOptions()" formControlName="priority" appValidateOutline />
+        </div>
+
         <div class="flex flex-col gap-1">
           <label class="font-semibold text-sm">Deadline</label>
           <p-datepicker formControlName="dueDate" [showIcon]="true" appValidateOutline />
@@ -88,20 +68,10 @@
         <p class="text-xs font-bold uppercase text-surface-500 mb-2">Assignee Details</p>
         <div class="flex flex-col gap-3">
           <div class="flex flex-col gap-1">
-            <input
-              pInputText
-              placeholder="Name"
-              formControlName="name"
-              appValidateOutline="assignee.name"
-            />
+            <input pInputText placeholder="Name" formControlName="name" appValidateOutline="assignee.name" />
           </div>
           <div class="flex flex-col gap-1">
-            <input
-              pInputText
-              placeholder="Email"
-              formControlName="email"
-              appValidateOutline="assignee.email"
-            />
+            <input pInputText placeholder="Email" formControlName="email" appValidateOutline="assignee.email" />
           </div>
         </div>
       </div>
@@ -120,12 +90,7 @@
       </div>
 
       <div class="flex justify-end gap-2 mt-4">
-        <p-button
-          label="Cancel"
-          severity="secondary"
-          [text]="true"
-          (onClick)="isDialogVisible.set(false)"
-        />
+        <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="isDialogVisible.set(false)" />
         <p-button label="Save Task" type="submit" [disabled]="taskForm.invalid" />
       </div>
     </form>
