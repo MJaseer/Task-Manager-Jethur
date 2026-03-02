@@ -1,6 +1,6 @@
 # Project Management Application
 
-This documentation provides the initialization requirements and setup instructions for the Angular 20.3 Task Management system. The project utilizes a zoneless change detection architecture and integrates Tailwind CSS v4 alongside PrimeNG 19+.
+This documentation provides the initialization requirements and setup instructions for the Angular 20.3 Task Management system. The project utilizes a zoneless change detection architecture and integrates Tailwind CSS v4 alongside PrimeNG 21+.
 
 ---
 
@@ -37,19 +37,7 @@ npm install
 
 ### 2. Tailind CSS v4 Configuration
 
-Tailwind CSS v4 is integrated using the `@tailwindcss/postcss` plugin. The main entry point `src/styles.scss` should contain the following imports to ensure proper layering with PrimeNG:
-
-```css
-@import "tailwindcss";
-
-@layer primeng, tailwind-utilities;
-
-@layer primeng {
-    @import "primeng/resources/themes/aura-light-blue/theme.css";
-    @import "primeng/resources/primeng.min.css";
-}
-
-```
+Tailwind CSS v4 is integrated using the `@tailwindcss/postcss` plugin. The main entry point `src/styles.css` should contain the imports to ensure proper layering with PrimeNG:
 
 ### 3. Application Configuration
 
@@ -111,4 +99,8 @@ The application expects a `Task` model with the following interface structure:
 | `dueDate` | string | ISO Date string |
 | `comments` | Comment[] | Recursive array of comment objects |
 
-Would you like me to generate the full `package.json` file specifically optimized for these version requirements?
+## Notes
+
+This project follows Angular standalone architecture principles and modern reactive patterns using Signals. The structure is designed to remain modular, maintainable, and easily extendable for additional features such as advanced filtering, real backend integration, or alternative state management solutions.
+
+If any clarification or additional information is required, please feel free to reach out.

@@ -1,16 +1,3 @@
-// import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
-// import { provideRouter } from '@angular/router';
-
-// import { routes } from './app.routes';
-
-// export const appConfig: ApplicationConfig = {
-//   providers: [
-//     provideBrowserGlobalErrorListeners(),
-//     provideZoneChangeDetection({ eventCoalescing: true }),
-//     provideRouter(routes)
-//   ]
-// };
-
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -34,12 +21,6 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
         theme: {
             preset: Aura,
-            options: {
-                // cssLayer: {
-                //     name: 'primeng',
-                //     order: 'tailwind-base, primeng, tailwind-utilities'
-                // }
-            }
         }
     }),
 
