@@ -42,11 +42,19 @@
   }
   
   .fc-toolbar-title {
-    @apply text-xl font-bold text-surface-900;
+    @apply text-xl font-bold text-surface-50;
   }
 
   .fc .fc-button-primary:disabled {
     @apply bg-surface-300 border-surface-300;
+  } 
+
+  .fc-scrollgrid-sync-inner {
+    @apply text-xl font-bold text-surface-900;
+  }
+
+  .fc-daygrid-day-top {
+    @apply text-surface-200;
   }
 }
 
